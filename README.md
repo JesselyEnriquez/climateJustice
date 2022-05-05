@@ -8,6 +8,8 @@ Data Source:
 [2015 Nepal Earthquake Open Data Portal](http://eq2015.npc.gov.np/#/)
 Information of Building Structure, Ownership, and Damage Assessment is provided and easily accesible via the portal for each building in surveyed post the Gorka Earthquake in 2015. 
 
+Kathmandu Living Labs designed and developed the 2015 Nepal Earthquake: Open Data Portal, with guidance from Central Bureau of Statistics and National Planning Commission, and support received as part of DFID’s Evidence for Development Programme implemented by The Asia Foundation and Development Initiatives.
+
 The damage assessment will be modeled for all eleven districts of Nepal those are named as the following:
 - Dhading
 - Dolakha
@@ -20,6 +22,3 @@ The damage assessment will be modeled for all eleven districts of Nepal those ar
 - Rasuwa
 - Sindhuli
 - Sindhupalchok
-
-# Citations
-Citation: Tedesco, M., C. Hultquist, S. E. Char, C. Constantinides, T. Galjanic, A. D. Sinha. 2021. Socio-Economic, Physical, Housing, Eviction, and Risk dataset, version 2 (SEPHER 2.0), Preliminary Release. https://doi.org/10.7927/r6yw-xw73. Accessed DAY MONTH YEAR.
