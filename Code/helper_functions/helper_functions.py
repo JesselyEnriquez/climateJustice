@@ -5,9 +5,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import numpy as np
+import re
 #importing metrics
 from sklearn import metrics
-from sklearn.metrics import mean_squared_error, mean_absolute_error,max_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error,max_error, accuracy_score
+from sklearn.metrics import precision_score,f1_score, accuracy_score, classification_report,confusion_matrix,classification_report
+from xgboost import plot_importance
 #unsure
 # from scipy import stats
 
@@ -46,7 +50,7 @@ def fillna_centrl_tendcy(dataframe,change_column,groupby_column,function):
     Arguments: dataframe = df ,   change_column='column to change', groupby_column = 'column_name' , function = 'mean'
     Note about Function:
     Function to use for transforming the data.
-    If a function, must either work when passed a DataFrame or when passed to DataFrame.apply. If func is both list-like and dict-like, dict-like behavior takes precedence(from transform documentation).
+    If a function, must either work when passed a DataFrame or when passed to DataFrame.apply. If func is both list-like and dict-like, dict-like behavior takes precedence(from    transform documentation).
     The function allows for easy fills of na given a dataframe, column to group by, and the function you want to perform('mean','mode','median'),'''
     dataframe[change_column] = dataframe[change_column].groupby( dataframe[groupby_column] ).transform(function)
     return dataframe
@@ -72,56 +76,82 @@ def null_reminders(dataframe,column_name,features_to_drop,value_cnt):
     return df_column_null
 
 
-# medium article inspiration for function: https://hersanyagci.medium.com/detecting-and-handling-outliers-with-pandas-7adbfcd5cad8#:~:text=As%20you%20can%20see%20this,best%20way%20to%20see%20outliers.
-# the function below is to return columns and indexes of outliers based on the Turkey rule (described in article)
-# the purpose is to reduce the sifting of each feature'
-def turkey_outliers(datframe):
-    # want to make sure only looking at numerical catergories (https://stackoverflow.com/questions/25039626/how-do-i-find-numeric-columns-in-pandas)
-    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+####################################### modeling summary functions ##########################
 
-    newdf = datframe.select_dtypes(include=numerics)
+# function to calculate predictions and plot confusion matrix for each iteration
+def preds_N_cm(model,X_train,y_train,X_test,y_test):
+    y_pred = model.predict(X_test)
+    predictions = [round(value) for value in y_pred]
+    # evaluate predictions with accuracy, precision, f1 scores (micro/macro)
+    accuracy = accuracy_score(y_test, predictions)
+    print("Accuracy: %.2f%%" % (accuracy * 100.0))
+    print()
+    #preds = model.predict(X_test)
+    # Average is assigned micro
+    precisionScore_sklearn_microavg = precision_score(y_test, y_pred, average='micro', zero_division=0)
+    precisionScore_sklearn_macroavg = precision_score(y_test, y_pred, average='macro',zero_division=0)
+    # Average is assigned macro
+    f1_score_sklearn_macro = f1_score(y_test, y_pred, average='macro')
+    f1_score_sklearn_micro = f1_score(y_test, y_pred, average='micro')
+    # Printing micro and macro average precision score
+    print('(micro) precision score: ',precisionScore_sklearn_microavg,'        (macro) precision score: ', precisionScore_sklearn_macroavg)
+    print('(micro) f1 score: ',f1_score_sklearn_micro,'               (macro) f1 score: ',f1_score_sklearn_macro)
+    print()
+    print('XGBoost Classificaition Report')
+    print(classification_report(y_test,y_pred))
+    
+    # printing confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
-    # column names for two seperate dataframes and their respective outlier index lists
-    column_name=[]
-    column_name2=[]
-    lwr_outlier_index=[]
-    upr_outlier_index=[]
-
-    #passes through each column in out numerical data frame
-    for column in newdf.columns:
-        # quartile calculations from each column
-        Q25 = float(newdf[column].quantile(0.25))
-        Q75 = float(newdf[column].quantile(0.75))
-
-        # establishing bounds for reference based on Turkey's rule to detect outliers from medium article above
-        IQR = Q75 - Q25
-        acceptable_lower = Q25 - 1.25*(IQR)
-        acceptable_upper = Q75 + 1.25*(IQR)
-
-        # storing actual min/max values for outlier evaluation below
-        min_series = newdf[column].min()
-        max_series = newdf[column].max()
-
-        # checking if the max and mins per column are greater than the acceptable bounds above
-        if min_series > acceptable_lower:
-            # appends the index of the first minimum value in the dataframe to the list
-            column_name.append(column)
-            lwr_outlier_index.append(newdf[column].idxmin(axis=0))
-        if max_series > acceptable_upper:
-            # appends the index of the first max value in the dataframe to the list
-            column_name2.append(column)
-            upr_outlier_index.append(newdf[column].idxmax())
+    # creating nice plot of conf matrix
+    cm_df = pd.DataFrame(cm,
+                         index = ['0','1','2','3','4'],
+                         columns = ['0','1','2','3','4'])
+    
+    #Plotting the confusion matrix
+    plt.figure(figsize=(12,8))
+    sns.heatmap(cm_df, annot=True)
+    plt.title('Confusion Matrix')
+    plt.ylabel('Actal Values')
+    plt.xlabel('Predicted Values')
+    plt.show()
 
 
-    # creates data frames for each case of outliers to view column_names to minimize searching through all 65 features
-    lwr_out_dict = {'column_name':column_name,'lwr_min_outlr_indx':lwr_outlier_index}
-    lwr_out_df = pd.DataFrame(lwr_out_dict,columns=['column_name','lwr_min_outlr_indx'])
 
-    upr_out_dict = {'column_name':column_name2,'upr_max_outlr_index':upr_outlier_index}
-    upr_out_df = pd.DataFrame(upr_out_dict,columns=['column_name','upr_max_outlr_index'])
+def plot_xgb_importance(model,num_features=10):
+    plt.rcParams["figure.figsize"] = (12, 5)
 
-    return lwr_out_df, upr_out_df
+    importance = plot_importance(model, max_num_features=10) # top 10 most important features
+    importance;
+####################################### preprocessing function ##########################
+# to pass in a series using apply functions
+def pre_process(sentences):
+    '''
+    inputs:
+    sentences = text
+    description:
+    The function is utilized to remove emoticons, urls (https,eee,etc), special characters,
+    and new line break stings('\n'). (Does NOT remove spaces).
+    use cases:
+    This was specifically created to pass in use df['new_column']=df['text_column'].apply(pre_preprocess)
+    OR individual strings.
+    '''
+    # removing emoticons
+    sentences = re.sub(':d', '', str(sentences)).strip()
+    sentences = re.sub(':p', '', str(sentences)).strip()
 
+    # removing urls
+    sentences = re.sub('(https?:\/\/)(\s)*(www\.)?(\s)*((\w|\s)+\.)*([\w\-\s]+\/)*([\w\-]+)((\?)?[\w\s]*=\s*[\w\%&]*)*','  ', sentences)
+
+    # removing special characters (https://stackoverflow.com/questions/5843518/remove-all-special-characters-punctuation-and-spaces-from-string)
+    sentences = re.sub('[^A-Za-z0-9]+', ' ', str(sentences))
+
+    sentences = re.sub('[^a-zA-Z\s]', '', str(sentences)).rstrip()
+
+    # removing the '\n' new line breaks in sentences
+    sentences = sentences.replace('\n',' ')
+
+    return sentences
 
 # this is a mertic function used to quickly append to a an exisitng dataframe to easily compare iterations
 def metric_reg(model,X_train,y_train,X_test,y_test):
