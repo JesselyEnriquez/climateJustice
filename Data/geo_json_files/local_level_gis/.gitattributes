@@ -1,0 +1,6 @@
+local_level.shp filter=lfs diff=lfs merge=lfs -text
+local_level.shx filter=lfs diff=lfs merge=lfs -text
+local_level.prj filter=lfs diff=lfs merge=lfs -text
+local_level.qpj filter=lfs diff=lfs merge=lfs -text
+local_level.cpg filter=lfs diff=lfs merge=lfs -text
+local_level.dbf filter=lfs diff=lfs merge=lfs -text
