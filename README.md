@@ -45,7 +45,7 @@ The damage grade will be modeled for all eleven districts of Nepal those are nam
 ## Modeling
 A variety of different models and approaches were attempted working through modeling iterations. The different classifier models used in the project were  Random Forest, XGBoost, and Logistic Regression.
 
-After many iterations, the model that performed best based on the F1 Score(micro), since it was a multi-class target with severely imbalanced classes of building damage was the Logistic Regression Classifier with only minor changes to the default parameters. The feature importances were explored to compare among models, these summaries can be found in the presentation.
+After many iterations, the model that performed best based on the F1 Score(micro) was the Logistic Regression Classifier with only minor changes to the default parameters, since it was a multi-class target with severely imbalanced classes of building damage. The feature importances were explored to compare among models, these summaries can be found in the presentation.
 
 The inputs that ultimately were of importance to can be summarized as a form to represent location, age of a building, and buildings structure conditions.
 </br>
