@@ -3,7 +3,7 @@
 
 ## Executive Summary
 
-The project to model and predict earthquake damage in Nepal came in part because of the tragic earthquake named Gorka that occured April 25, 2015 in Nepal. The project aims to support and classify the damage a building is expected to endure given an event with a similar magnitude occurs, in order to inform Nepali locals if retrofitting of a particular building is needed. The research and modeling was done for approximately 11 districts in Nepal. The model can predict and classify the expected damage of a building with an accuracy and F1 Score (micro) of 66%. Considering the baseline percentage for this dataset was 36% this model provides a considerable advantage for the government to accurately determine buildings at risk. </br>
+The project to model and predict earthquake damage in Nepal came in part because of the tragic earthquake named Gorka that occured April 25, 2015 in Nepal. The project aims to support and classify the damage a building is expected to endure given an event with a similar magnitude occurs, in order to inform Nepali locals if retrofitting of a particular building is needed. The research and modeling was done for approximately 11 districts in Nepal. The model can predict and classify the expected damage of a building with an accuracy and F1 Score (macro) of 64%. Considering the baseline percentage for this dataset was 36% this model provides a considerable advantage for the government to accurately determine buildings at risk. </br>
 
 ## Notebook Order:
 - [earthquake_scrub.ipynb](./Code/Cleaning_N_EDA/earthquake_scrub.ipynb)  </br>
@@ -45,7 +45,7 @@ The damage grade will be modeled for all eleven districts of Nepal those are nam
 ## Modeling
 A variety of different models and approaches were attempted working through modeling iterations. The different classifier models used in the project were  Random Forest, XGBoost, and Logistic Regression.
 
-After many iterations, the model that performed best based on the F1 Score(micro) was the Logistic Regression Classifier with only minor changes to the default parameters, since it was a multi-class target with severely imbalanced classes of building damage. The feature importances were explored to compare among models, these summaries can be found in the presentation.
+After many iterations, the model that performed best based on the F1 Score(macro) was the Logistic Regression Classifier with only minor changes to the default parameters, since it was a multi-class target with severely imbalanced classes of building damage. The feature importances were explored to compare among models, these summaries can be found in the presentation.
 
 The inputs that ultimately were of importance to can be summarized as a form to represent location, age of a building, and buildings structure conditions.
 </br>
