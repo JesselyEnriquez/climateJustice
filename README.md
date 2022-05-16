@@ -15,7 +15,7 @@ The project to model and predict earthquake damage in Nepal came in part because
 - [logistic_regression.ipynb](./Code/Modeling/logistic_regression.ipynb) </br>
 
 ## Problem Statement
-In Nepal there is a need to evaluate where to focus not only preventative funding but also locals who are knowledgeful of how to retrofit their communities. A model to shed some insight as to what buildings are in need of retrofitting could allow locals to asses if there were any buildings overlooked when undergoing reconstructions from the 2015 Gorkha Earthquake.
+In Nepal there is a need to evaluate where to focus preventative funding but also locals who are knowledgeful of how to retrofit their communities. A model to shed some insight as to what buildings are in need of retrofitting could allow locals to asses if there were any buildings overlooked when undergoing reconstructions from the 2015 Gorkha Earthquake. 
 
 ## Data Collection
 From the [2015 Nepal Earthquake Open Data Portal](http://eq2015.npc.gov.np/#/)
@@ -56,9 +56,10 @@ The inputs that ultimately were of importance to can be summarized as a form to 
 ## Conclusion
 
 
-The final model is able to predict the level of damage a building is expected to experience far more effectively than the baseline. The factors that seem to have the most impact are  location, age of a building, and building structure conditions. <br>
+The final model is able to predict the level of damage a building is expected to experience far more effectively than the baseline. The factors that seem to have the most impact are  location, age of a building, and building structure conditions.  <br>
 
-The Nepali government, as well as locals that the volunteers to survey can utilize this model to attempt to evaluate the potential expected damage if another earthquake were to occur. Given that this was data from a fairly significant earthquake these damage levels is considered a conservative predictions since earthquakes on this scale have not been extremely prevelant in Nepal.
+
+The Nepali government, as well as locals that the volunteers to survey can utilize this model to attempt to evaluate the expected damage if another earthquake of that magniture were to occur. Given that this was data from a fairly significant earthquake these damage levels is considered a conservative predictions since earthquakes on this scale are not extremely prevelant in Nepal.
 <br>
 ---
 
