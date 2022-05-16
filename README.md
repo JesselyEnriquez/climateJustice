@@ -6,12 +6,12 @@
 The project to model and predict earthquak damage in Nepal came in part because of the tragic earthquake named Gorka that occured April 25, 2015 in Nepal. The project aims to support and classify the damage a building is expected to endure given an event with a similar magnitude occurs, in order to inform Nepali locals if retrofitting of a particular building is needed. The research and modeling was done for approximately 11 districts in Nepal. The model can predict and classify the expected damage of a building with an accuracy and F1 Score (micro) of 66%. Considering the baseline percentage for this dataset was 36% this model provides a considerable advantage for the government to accurately determine buildings at risk. </br>
 
 ## Notebook Order: 
-- [earthquake_scrub.ipynb](./earthquake_scrub.ipynb)  </br>
+- [earthquake_scrub.ipynb](./Code/Cleaning_N_EDA/earthquake_scrub.ipynb)  </br>
 - [muni_geo_encoding.ipynb](./Code/Cleaning_N_EDA/muni_geo_encoding.ipynb) </br>
 - [BEGIN_HERE_muni_eda_viz.ipynb](./Code/Cleaning_N_EDA/BEGIN_HERE_muni_eda_viz.ipynb)  </br>
 - [muni_eda_viz-prt2.ipynb](./Code/Cleaning_N_EDA/muni_eda_viz-prt2.ipynb) </br>
 - [random_forest.ipynb](./Code/Modeling/random_forest.ipynb)</br>
-- [xgboost_classifier.ipynb](./Code/Modeling/random_forest.ipynb) </br>
+- [xgboost_classifier.ipynb](./Code/Modeling/xgboost_classifier.ipynb) </br>
 - [logistic_regression.ipynb](./Code/Modeling/logistic_regression.ipynb) </br>
 
 ## Problem Statement
