@@ -54,7 +54,10 @@ The inputs that ultimately were of importance to can be summarized as a form to 
 ---
 
 ## Conclusion
+
+
 The final model is able to predict the level of damage a building is expected to experience far more effectively than the baseline. The factors that seem to have the most impact are  location, age of a building, and building structure conditions. <br>
+
 The Nepali government, as well as locals that the volunteers to survey can utilize this model to attempt to evaluate the potential expected damage if another earthquake were to occur. Given that this was data from a fairly significant earthquake these damage levels is considered a conservative predictions since earthquakes on this scale have not been extremely prevelant in Nepal.
 <br>
 ---
