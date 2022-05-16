@@ -59,7 +59,10 @@ The inputs that ultimately were of importance to can be summarized as a form to 
 The final model is able to predict the level of damage a building is expected to experience far more effectively than the baseline. The factors that seem to have the most impact are  location, age of a building, and building structure conditions.  <br>
 
 
+
 The Nepali government, as well as locals that the volunteers to survey can utilize this model to attempt to evaluate the expected damage if another earthquake of that magniture were to occur. Given that this was data from a fairly significant earthquake these damage levels is considered a conservative predictions since earthquakes on this scale are not extremely prevelant in Nepal.
+
+
 <br>
 ---
 
@@ -91,6 +94,6 @@ when | roof_type              |    object                  | a flag that determi
  | position               |        object              | a flag that determines a buildings building (categories = j, o, s, t)                                                                                                                                                                                       |
  | plan_configuration     |          object            | a flag that determines a buildings plan configuration (categories = j,q, s, x)                                                                                                                                                                                         |
  | has_superstructure     | object | a flag that determines if a buildings superstructure was made of the following: adobe_mud, mud_mortar_stone, stone_flag, cement mortar_stone, mud_mortar_brick, cement_mortar_brick, timber, bamboo, rc_non_engineered, rc_engineered, other |
- | legal_ownership_status |                      | legal ownership status of the land where a building was located (categories = a, r, v, w)                                                                                                                                                    |
- | has_secondary_use      |                      | a flag to determine if a building was used for any secondary purpose the potential secondary uses are: agriculture, hotel, rental, institution, school, industry, health post, gov office, police, other                                     |
+ | legal_ownership_status |           object           | legal ownership status of the land where a building was located (categories = a, r, v, w)                                                                                                                                                    |
+ | has_secondary_use      |           object           | a flag to determine if a building was used for any secondary purpose the potential secondary uses are: agriculture, hotel, rental, institution, school, industry, health post, gov office, police, other                                     |
  | count_families         | int                  | the number of families that live in each building                                                                                                                                                                                            |
