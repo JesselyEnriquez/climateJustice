@@ -1,4 +1,4 @@
-prevalent# Earthquake Damage Modeling
+# Earthquake Damage Modeling
 ---
 
 ## Executive Summary
@@ -15,19 +15,18 @@ The project to model and predict earthquake damage in Nepal came in part because
 - [logistic_regression.ipynb](./Code/Modeling/logistic_regression.ipynb) </br>
 
 ## Problem Statement
-In Nepal there is a need to evaluate where to focus preventative funding but also locals who are knowledgeful of how to retrofit their communities. A model to shed some insight as to what buildings are in need of retrofitting could allow locals to asses if there were any buildings overlooked when undergoing reconstructions from the 2015 Gorkha Earthquake. 
+In Nepal there is a need to evaluate where to focus preventative funding but also locals who are knowledgeful of how to retrofit their communities. A model to shed some insight as to what buildings are in need of retrofitting could allow locals to assess if there were any buildings overlooked when undergoing reconstructions from the 2015 Gorkha Earthquake. 
 
 ## Data Collection
 From the [2015 Nepal Earthquake Open Data Portal](http://eq2015.npc.gov.np/#/)
-In their own words:
 
-*Following the 7.8 Mw Gorkha Earthquake on April 25, 2015, Nepal carried out a massive household survey using mobile technology to assess building damage in the earthquake-affected districts. Although the primary goal of this survey was to identify beneficiaries eligible for government assistance for housing reconstruction, it also collected other useful socio-economic information. In addition to housing reconstruction, this data serves a wide range of uses and users e.g. researchers, newly formed local governments, and citizens at large. The purpose of this portal is to open this data to the public.*
+On April 25, 2015 there was an earthquake that was named the Gorkha Earthquake. Its magnitude was on a scale of 7.8 moment magnitude (mW). Utimately, it cost the world 9,000 lives and 100,000 injuries. So immediately following the event the Nepali Government undertook a massive household survey to identify those in need of government financial assistance. Naturally they collected socio-economic data, in addition to the building characteristics pre/post the earthquake. Another source of information that was gathered is a secondary use flag in which the we can determine if a building was used also as a government office or a hostipital.  
 
-Information of Building Structure, Ownership, and Damage Assessment is provided and easily accessible via the portal for each building in surveyed post the Gorka Earthquake in 2015.
+Utimately this data was publicized on the Data Portal linked above, however the geospatial coordines of these locatinos were not provided. So that data had to be gathered from the Nepali govenerment directly([refrence](https://www.nepal.gov.np/)). Mapping these onto one another took quite a bit of time but proved to display some insightful information. It also provides a great foundation for potential future work. 
 
-Kathmandu Living Labs designed and developed the 2015 Nepal Earthquake: Open Data Portal, with guidance from Central Bureau of Statistics and National Planning Commission, and support received as part of DFID’s Evidence for Development Program implemented by The Asia Foundation and Development Initiatives.
+The features used in the project model contained features from the Building Structure, Ownership, and Damage Assessment datasets that were accessible via the portal and they can be found in the data dictionary below.
 
-The damage assessment will be modeled for all eleven districts of Nepal those are named as the following:
+The damage grade will be modeled for all eleven districts of Nepal those are named as the following:
 - Dhading
 - Dolakha
 - Gorkha
